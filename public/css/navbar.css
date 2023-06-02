@@ -1,0 +1,15 @@
+/* .navbar-expand-lg .navbar-collapse {
+    display: flex!important;
+    justify-content: space-around;
+    flex-basis: auto;
+    } */
+   
+.fakeinput{
+    display:none;
+}
+
+body{
+    background-color:black;
+    color:white;
+}
+

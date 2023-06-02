@@ -1,0 +1,166 @@
+<%- include('../partials/header') %>
+<title>Search Results</title>
+<link rel="stylesheet" href="/css/entire.css">
+<!-- <link rel="stylesheet" href="/css/searchResults.css" > -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="css/watchlist.css">
+
+
+
+<%- include('../partials/navbar') %>
+
+
+<%- include('../partials/flash') %> 
+
+<% if(list.length != 0){ %> 
+<% let i=0, k=0; %> 
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">        
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Watchlist</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table table-responsive-xl">
+                      <thead>
+                        <tr>
+                            <th>Sr.No.</th>
+                            <th>Name</th>
+                          <th>Type</th>
+                          <th>Rating</th>
+                          <th>Status</th>
+                          <th><% if(x==0){ %> 
+                            <form action="/sort" method="get">
+                              <button type="submit" class="btn btn-primary">Sort</button>
+                            </form>
+                            <% }else{ %> 
+                              <form action="/watchlist" method="get">
+                                <button type="submit" class="btn btn-primary">Unsort</button>
+                              </form>
+                              <% } %> 
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                         
+                        <% for(l of list){ %> 
+                          <form action="/edit" class="form" method="post">  
+                          <input type="hidden" name="mid" value="<%= l.m_id %>"/>                    
+                          <tr class="alert" role="alert">
+                            <td>
+                                <%= ++i %> 
+                                <% k++ %>                                
+                            </td>
+                          <td class="d-flex align-items-center">
+                            <a href="/movies/<%= l.m_id %>"><div class="img" style="background-image: url('<%= l.m_url %>');"></div></a>
+                              <div class="pl-3 email">
+                                <a href="/movies/<%= l.m_id %>"><%= l.m_name %>  (<%= l.m_year %>)</a>
+                              </div>
+                          </td>
+                          <td><%= l.m_type %> </td>
+                          <!-- our rating -->
+                          <td><input type="number" name="rating" id="rating" value="<%= l.m_rating %>" min="0" max="10"></td>
+                          <!-- our status -->
+                          <td class="status">
+                            <% if(l.m_status == 'Completed'){ %> 
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" name="status" type="checkbox" role="switch" value="Completed"  checked>
+                              <label class="form-check-label" ><span class="badge badge-success">Completed</span>
+                              </label>
+                            </div>
+                            <% } else{%>                             
+                              <div class="form-check form-switch">
+                                <input class="form-check-input" name="status" type="checkbox" role="switch" value="Completed" >
+                                <label class="form-check-label" ><span class="badge badge-warning">Not Completed</span>
+                                </label>
+                              </div>
+                              <% } %>                               
+                              
+                          </td>
+                          <td>                          
+                           
+                           <button type="submit" class="edit btn"><i class="fas fa-edit text-info"> </i>  </button></form><a href="/delete/<%= l.m_id %>"><button class="editBtn btn text-danger" ><i class="fas fa-trash-alt"> </i>  </button></a>
+                           
+                        </td>
+                        </tr>
+                           
+                                 
+                      
+                        <% } %> 
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="display:none" class="fakeiterator"><%= k %> </div>
+
+  <div class="mobile">
+      <div class="container-fluid d-flex justify-content-center">
+        <% for(l of list){ %>
+          <form action="/edit" class="form" method="post">  
+            <input type="hidden" name="mid" value="<%= l.m_id %>"/> 
+          <div class="card">
+          <div class="row">
+          <div class="col-6 text-center mobileCard"> 
+            <div class="item">
+        <img src="<%= l.m_url %>" alt="" class="img-thumbnail cardImage"> 
+      </div>
+      </div>
+      <div class="col-6 mobileCard"> 
+        <div class="item">
+          <a href="/movies/<%= l.m_id %>"><p><%= l.m_name %>  (<%= l.m_year %>) </p></a>
+          <% if(l.m_rating){ %> 
+          <p><%= l.m_type %>  (<i class="fa-solid fa-star mobile-title">  <%= l.m_rating %></i>)</p>
+          <% }else{ %>
+          <p><%= l.m_type %>  (Not Rated)</p>
+          <% } %>   
+          <!-- <p><%= l.m_status %> </p> -->
+          
+          <input type="number" name="rating" id="rating" value="<%= l.m_rating %>" min="0" max="10">
+                          <!-- our status -->
+                          
+                            <% if(l.m_status == 'Completed'){ %> 
+                            <div class="form-check form-switch mt-2 ml-4">
+                              <input class="form-check-input" name="status" type="checkbox" role="switch" value="Completed"  checked>
+                              <label class="form-check-label" ><span class="badge badge-success">Completed</span>
+                              </label>
+                            </div>
+                            <% } else{%>                             
+                              <div class="form-check form-switch mt-2 ml-4">
+                                <input class="form-check-input" name="status" type="checkbox" role="switch" value="Completed" >
+                                <label class="form-check-label" ><span class="badge badge-warning">Not Completed</span>
+                                </label>
+                              </div>
+                              <% } %>  
+
+
+
+          <button type="submit" class="edit btn"><i class="fas fa-edit text-info"> </i>  </button></form><a href="/delete/<%= l.m_id %>"><button class="editBtn btn text-danger" ><i class="fas fa-trash-alt"> </i></button></a>
+                           
+        </div>                     
+      </div>
+    </div>
+      <% } %>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+<% }else{ %> 
+<h2 class="empty">Your Watchlist is Empty!</h2>
+<% } %> 
+<script src="/js/watchlist.js"></script>
+<%- include('../partials/footer') %>

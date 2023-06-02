@@ -1,0 +1,245 @@
+<%- include('../partials/header') %>
+<title><%= result.title  %></title>
+<!-- <link rel="stylesheet" href="/css/home.css" >  -->
+<link rel="stylesheet" href="/css/entire.css">
+<link rel="stylesheet" href="/css/movie.css" >
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
+
+<div class="ftco-section">
+<div class='card1'>
+    <div class='card1_left'>
+      <img src='<%= result.image %>'>
+    </div>
+    <div class='card1_right'>
+      <h1><%= result.title %></h1>
+      <div class='card1_right__review'>
+       <% let x %> 
+      </div>
+      <div class='card1_right__details'>
+        <ul>
+          <% if(result.type == 'Movie'){ %> 
+          <li>Director: <%= result.directors %></li>
+          <% }else if(result.type == 'TVSeries'){ %>
+          <li>Seasons: <% for(s of result.tvSeriesInfo.seasons){
+            x = Math.max(s);
+          } %>
+          <%= x %> 
+          </li>
+          <% } %>     
+          <li class='badge badge-warning'>IMDB Rating: <i class="fa-solid fa-star" style="color:goldenrod"> <%= result.imDbRating %></i></li>
+        </ul>
+        <ul>
+          <li class="text-success"><%= result.year %></li>
+          <li class="text-danger"><%= result.runtimeStr %> </li>
+          <li class="text-warning"><%= result.genres %> </li>
+        </ul>
+        
+
+        <div class='card1_right__review'>
+          <p><%= result.plot %> </p>
+        </div>
+        <% if(currentUser && author.equals(currentUser._id)){ %> 
+        <% if(isAdded.length==0){ %> 
+        <div class='card1_right__button'>
+          <form class="addtowatchlistform" action="/addtowatchlist" method='post'>
+            <input name="mname"  type="hidden" value="<%= result.title %> ">
+            <input name="mid"  type="hidden" value="<%= result.id %> ">
+            <input name="myear"  type="hidden" value="<%= result.year %> ">
+            <input name="murl"  type="hidden" value="<%= result.image %> ">
+            <input name="mtype"  type="hidden" value="<%= result.type %> ">
+            <button type="submit" class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Add to Watchlist"><i class="fa-solid fa-plus"></i></button>
+          </form>
+        <% }else{ %> 
+          <div class='card1_right__button'>
+            <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Added to Watchlist"><i class="fas fa-list-check"></i></button>
+            <form class="removefromwatchlistform btn" action="/delete/<%= result.id %>" method='get'>             
+              <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Remove from Watchlist"><i class="fas fa-trash-alt"></i></button>
+            </form>
+          </div>
+        
+        <% } %> 
+      </div>
+      <% } %> 
+    </div>
+  </div>
+
+</div>
+<!-- <div class="container-fluid bottom">
+<div class="row d-flex justify-content-center">
+  <div class="card col-md-6 card2">
+   
+  </div>
+  <div class="card col-md-6">
+
+  </div>
+</div>
+</div> -->
+<div class="ftco-section">
+<div class="row bottom">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <embed type="video/webm" src="<%= trailer.linkEmbed %>" autoplay="false" width="100%" height="500px">        
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card cast w-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+        <div class="row">
+        <div class="col-md-6 text-center"> 
+        <% for(let c=0;c<6;c=c+2){ %>
+          <img src="<%= result.actorList[c].image %>" alt="" class="img-thumbnail castImage">
+          <p><%= result.actorList[c].name %></p>
+        <% } %> 
+        <a href="/cast/<%= result.id %>" class="alsolike"><button class="btn btn-warning">View More</button></a> 
+        </div>
+        <div class="col-md-6 text-center">
+          <% for(let c=1;c<6;c=c+2){ %>
+            <img src="<%= result.actorList[c].image %>" alt="" class="img-thumbnail castImage">
+            <p><%= result.actorList[c].name %></p>
+          <% } %>  
+          </div>
+        </div>
+      </div>
+      
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+  <div class="col-md-12 ftco-section">
+    <div class="card w-3">
+      <div class="card-body">
+        <h5 class="text-center">YOU MAY ALSO LIKE</h5>
+        <div class="d-flex justify-content-center">
+        <div class="row">
+          <% for(let c=0;c<6;c++){ %>
+        <div class="col-md-2 text-center"> 
+          <a href="/movies/<%= result.similars[c].id %>" class="alsolike">
+          <img src="<%= result.similars[c].image %>" alt="" class="img-thumbnail">
+          <p><%= result.similars[c].title %></p>
+          </a>
+        </div>
+        <% } %>       
+        </div>
+      </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="mobile">
+<div class="container-fluid">
+  <div class="card mt-3">
+    <div class="row">
+      <div class="col-6">
+      <img src="<%= result.image %>" alt="" class="mobileImage">
+      </div>
+      <div class="col-6 mobileDetails">
+        <h1 class="text-center mt-2"><%= result.title %></h1>
+        <div class="mt-3"> 
+        <% if(result.type == 'Movie'){ %> 
+          <p>Director: <%= result.directors %></p>
+          <% }else if(result.type == 'TVSeries'){ %>
+          <p>Seasons: <% for(s of result.tvSeriesInfo.seasons){
+            x = Math.max(s);
+          } %>
+          <%= x %> 
+          </p>
+          <% } %>
+          <p class='text-warning'>IMDB Rating: <i class="fa-solid fa-star" style="color:goldenrod"> <%= result.imDbRating %></i></p>
+          <p class="text-success"><%= result.year %></p>
+          <p class="text-danger"><%= result.runtimeStr %> </p>
+          <p class="text-warning"><%= result.genres %> </p>
+          </div>
+          <% if(currentUser && author.equals(currentUser._id)){ %>
+          <% if(isAdded.length==0){ %> 
+            <div class=''>
+              <form class="addtowatchlistform" action="/addtowatchlist" method='post'>
+                <input name="mname"  type="hidden" value="<%= result.title %> ">
+                <input name="mid"  type="hidden" value="<%= result.id %> ">
+                <input name="myear"  type="hidden" value="<%= result.year %> ">
+                <input name="murl"  type="hidden" value="<%= result.image %> ">
+                <input name="mtype"  type="hidden" value="<%= result.type %> ">
+                <button type="submit" class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Add to Watchlist"><i class="fa-solid fa-plus"></i></button>
+               
+              </form>
+            
+            <% }else{ %> 
+                <button class="btn btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Added to Watchlist"><i class="fas fa-list-check"></i></button>
+                <form class="removefromwatchlistform btn" action="/delete/<%= result.id %>" method='get'>             
+                  <button type="submit" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Remove from Watchlist"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            <% } %> 
+          </div>
+          <% } %> 
+      </div>
+    </div>    
+  </div>
+</div>
+
+<div class="container-fluid mobile">
+<div class="card container-fluid mobileDetails">
+  <!-- <h1 class="text-center">Summary</h1> -->
+  <p class="mt-2"><%= result.plot %></p>
+</div>
+</div>
+
+<div class="container-fluid mt-5 mobile">
+  <embed type="video/webm" src="<%= trailer.linkEmbed %>" autoplay="false" width="100%" height="300px">
+</div>
+
+<div class="container-fluid mt-5 mobile">
+<div class="card mt-3 castMobile">
+  <div class="row">
+    <div class="col-6 text-center mt-3"> 
+    <% for(let c=0;c<6;c=c+2){ %>
+      <img src="<%= result.actorList[c].image %>" alt="" class="img-thumbnail castImage">
+      <p><%= result.actorList[c].name %></p>
+    <% } %> 
+    <a href="/cast/<%= result.id %>" class="alsolike"><button class="btn btn-warning">View More</button></a>
+    </div>
+    <div class="col-6 text-center mt-3">
+      <% for(let c=1;c<6;c=c+2){ %>
+        <img src="<%= result.actorList[c].image %>" alt="" class="img-thumbnail castImage">
+        <p><%= result.actorList[c].name %></p>
+      <% } %>  
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="container-fluid mt-5 mobile">
+  <div class="card container-fluid mt-3">
+    <h1 class="text-center">YOU MAY ALSO LIKE</h1>
+    <div class="d-flex justify-content-center">
+      
+      <div class="row">
+        <% for(let c=0;c<6;c++){ %>
+      <div class="col-6 text-center"> 
+        <a href="/movies/<%= result.similars[c].id %>" class="alsolike">
+        <img src="<%= result.similars[c].image %>" alt="" class="img-thumbnail">
+        <p><%= result.similars[c].title %></p>
+        </a>
+      </div>
+      <% } %>       
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<%- include('../partials/footer') %>

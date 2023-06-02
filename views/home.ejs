@@ -1,0 +1,71 @@
+<%- include('partials/header') %>
+<title>Home Page</title>
+<link rel="stylesheet" href="/css/entire.css">
+<link rel="stylesheet" href="/css/home.css"> 
+
+<%- include('partials/navbar') %>
+<%- include('partials/flash') %>
+
+  <h1 class="text-center pt-5 title">BOX OFFICE HITS</h1>
+   
+  <div class="container-fluid con">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex flex-row">    
+                    <% let i = result[0].image %> 
+                        <% let link = i.replace("._V1_UX128_CR0,3,128,176_AL_","") %> 
+                        <% link = link.replace("._V1_UY176_CR6,0,128,176_AL_","") %> 
+                        <% link = link.replace("_V1_UY176_CR0,0,128,176_AL_.","") %>
+                        <img class="movieImg" src='<%= link %>'>
+                    <div class="d-flex flex-column pl-3">
+                    <h1 class="heading"><a href="/movies/<%= result[0].id %>"><%= result[0].title %></a></h1>
+                    <div class="pt-5 ">
+                    <h5>Rank :   <%= result[0].rank %></h5>
+                    <h5>Gross Revenue :   <%= result[0].gross %> </h5>
+                    <h5>Weekend Revenue :   <%= result[0].weekend %> </h5>
+                    <h5>No. of Weeks :   <%= result[0].weeks %> </h5>
+                    </div>
+                    </div> 
+                    </div> 
+            </div>
+          
+
+            <% for(let j = 1;j<10;j++){ %>
+          <div class="carousel-item">
+            <div class="d-flex flex-row">    
+            <%  i = result[j].image %> 
+                <% link = i.replace("._V1_UX128_CR0,3,128,176_AL_","") %> 
+                <% link = link.replace("._V1_UY176_CR6,0,128,176_AL_","") %> 
+                <% link = link.replace("_V1_UY176_CR0,0,128,176_AL_.","") %>
+                <img class="movieImg" src='<%= link %>'>
+            <div class="d-flex flex-column pl-3">
+            <h1 class="heading"><a href="/movies/<%= result[j].id %>"><%= result[j].title %></a></h1>
+            <div class="pt-5 ">
+            <h5>Rank :   <%= result[j].rank %></h5>
+            <h5>Gross Revenue :   <%= result[j].gross %> </h5>
+            <h5>Weekend Revenue :   <%= result[j].weekend %> </h5>
+            <h5>No. of Weeks :   <%= result[j].weeks %> </h5>
+            </div>
+            </div> 
+            </div> 
+          </div>
+          <% } %> 
+        </div>
+        
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+    </div>
+</div>
+
+
+
+<%- include('partials/footer') %>

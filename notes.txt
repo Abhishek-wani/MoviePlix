@@ -1,0 +1,565 @@
+TABLE
+1. thead,tbody and tdata are used to define the content of the TABLE
+2. th for table header
+3. tr for table row and td for table data
+4. everything bydefault should be inside a tr for a particular row.
+
+FORMS
+1. use value in radio button to pass data in form
+2. use name attribute as same for single value to be selected in radio buttons.
+3. select->options
+   we have attributes in options such as value to pass data in form we can use "selected" to have something as default.
+4. "for" in label and "id" in input should be same to be connected.
+5. button in form behaves by default as submit, we can change it to other type by "type" attribute.
+6. always check mdn for different types of "type" attribute we have range, textarea here.
+7. There are lot of attribtues for validations , please check it, minlength, maxlength, required and so on.. 
+
+CSS
+1. selector {
+   property : value;
+   }
+2. style attribute is used for inline CSS
+3. use <style> tag inside head after title for styling
+4. for external css use <link> tag and href="link to file" as attribtue
+5. color is used to change text color and background-color is used to change background-color
+6. background and background-color are different , background is used for color,img and gradient and lot more stuff.
+7. text-align,font-weight,text-decoration,letter-spacing,line-height,font-size,font-family(to change fSonts),text-transform(uppercase)
+8. font-family: font-name,fallback font-name[if the first font is not available then it will use fallback font] (or) generic family name[if the first font is not available then it will pick any one font from te specified family]
+9. *{ }, element{ }, element1,element2{ } => eg. h1,h2{ },id selector(#idName{ }),class selector(.className{ })
+10. use  coolors website for color pallete
+11. descendant selector li a{ }, it means select all a tags which are inside of li
+12. adjacent selector li + a{ }, it means select all a that comes right after li
+13. direct desendent selector li > a, it means select all atgs that are direct children
+14. attribute selector tagName[attribute="value"]{ }, e.g. input[type="password"]{ }
+15. pseudo classes :active,:checked,:first,:first-child,:hover,:not(),:nth-child(),:nth-child(),:nth-of-type()
+16. We also have pseudo elements to select ::first-line or ::first-letter, ::after, ::before,::selection and stuff.
+17. !important if we write this after any property it will win the race of specificity and will be override everything automatically.
+18. Some properties are inheritable while some are not
+19. If some elements dont inherit the css property which we set, we can do property: inherit; to have that element inherit the property from the closest parent.
+
+CSS BOX MODEL
+1. width, height used to change the size 
+2. border-width, border-color, border-style , box-sizing: border-box/content-box(default), border-box property will set the width of the element including border , whereas bydefault border is placed on top of the element.
+3. shorthand: border: width | style | color;
+4. border-(left | right | top | bottom)-style
+5. border-radius
+6. padding: space between border and content
+   padding: top right bottom left; //shorthand
+   padding-top:
+7. margin : space between elements, syntax same as padding
+8. display : inline | block | inline-block
+   inline: width & height are ignored. MArgin & padding push elements away horizontally but not vertically.
+   block: width,height margin and padding are respected, it breaks the flow of document
+   inline-block: behaves like an inline except width,height margin and padding are respected.
+9. em- the font-size refers to font-size of parent and other properties  such as padding and margin refers to font-size of element
+10. rem - it derives font-size from the root html element
+11. rgba, here a is aplha(transparency which ranges from 0(completely transparent) to 1)
+12. opacity(0 to 1) is used for entire element and its decendents
+13. for position property read mdn
+14. transition read mdn
+16. transform used to scale rotate skew translate read mdn for more
+17. box-shadow and text-shadow used for great shadow effects
+18. cursor: pointer is used to make user understand that the object is clickable
+19. background-image, background has lot of other properties check mdn
+20. margin: 0 auto; // can be used to center things
+
+CSS Flexbox
+1. The flex CSS shorthand property sets how a flex item will grow or shrink to fit the space available in its flex container. 
+display: flex ,(main-axis) flex-direction : row-reverse | column-reverse | row | column
+2. (main-axis) justify-content: start | center | end | right | left | space-between | space-evenly | space_around
+3.(main-axis) justify-content depends continuously on the flex-direction
+4. The flex-wrap CSS property sets whether flex items are forced onto one line or can wrap onto multiple lines. flex-wrap: wrap | wrap-reverse
+5.(cross-axis) align-items: start | end | center and a lot more
+6. Used to space between rows along cross-axis, works with wrap. The CSS align-content property sets the distribution of space between and around content items along a flexbox's cross-axis or a grid's block axis. 
+7. align-self is used for aligining individual elements
+8. flex-basis it uses all the space available in the flex and gives initial size along main axis, flex-grow = 1 | 2 , uses all the unused space,flex-shrink, we also have flex-shorthand, grow and shrink controls the speed of grow and shrink if window size is resized for responsive websites.
+9. @media (min-width:  ) { h1{color : blue;}}
+
+#trick
+1. use justify-content to align horizontally and align-items to align vertically.
+2. use display:none i.e .d-none to keep things hidden and .d-lg-inline when we hit large we can see that hidden object
+
+JAVASCRIPT
+1. 2 ** 3 = 2^3
+2. we also have NaN -> Not a number
+3. 1 == '1' is true as it tries to coers into same type, whereas 1 === '1' is false. 0 == false and 1 == true
+4. console.log, console.warn, console.error, alert , prompt(takes user from input)
+5. <script src="app.js"></script>
+6. script tag is placed at the bottom of body
+
+OBJECTS
+1. objects are collection of properties, properties are a key-value pair, rather than accessing data using an index , we use custom keys.
+let objectName = {key: value, key : value};
+accessing objects: objectName.key || objectName['key'] || objectName[key(but its a variable so without inverted commas)]
+2. parseInt , it will get us only the numbers from a particular string. 
+3. for(variable of Iterable){  ...   }
+4. Object.keys(objectName) is used to get an array of keys, similaraly for values we use Object.values(objectName)
+5. To iterate over an object we use for(variable in iterable){ ...  }
+6. let variable = function(args){.... return ...}
+7. const square = {   
+    perimeter : function(side){
+        return side*4;
+    },
+    area(side){
+        return side*side;
+    }
+   };
+8. The value of this depends on the invocation context of the function it is used in.
+   Whenever a function is called the keyword this refers to the object to the left of . of the calling function.
+   all the functions are inisde window object.
+   function(), if a function is called in this way and if there is a this inside this function defition than that this will refer to the window object.
+9. try{
+      //here we write a function ot stmt, if it throws error than the catch is executed, and we can pass e to catch and also print it, it prints error, this try catch block will not break our code instead it will make sure the whole code runs. 
+   }catch(e){
+      console.log(e); // prints error in console
+   }
+10. array.forEach(function(x){
+   ....
+   }) //x will iterate over the array and will give the value of every iteration.
+11. map is sued to create new arrays from existing arrays.
+     const newArray = oldArray.map(function(x){
+        return (expression);
+     });//x will iterate over the array and will give the value of every iteration,all the returned values will be stored in a new array.
+12. const add = (x,y) => {
+      return x + y;
+   }//how to call a function : add()
+13. for implicit returns in arrow functions
+      const add = (x,y) => x + y
+      OR
+      const square = x => {
+         x * x
+      }
+      works only when we have 1 line inside arrow function.
+14. setTimeout(() => { ..... }, 3000); //It will call the function after 3s
+    const id = setInterval(() => { ..... }, 3000); // It will keep calling the function every 3s
+    clearInterval(id) //to stop the setInterval 
+15. filter is similar to  map
+16. we also have every and some which returns true or false
+17. spread operator ...['1','2','3'] = 1 2 3 //it spreads up the array or object 
+      {...obj1, ...obj2} // this will add the key value pairs of both and make a new object
+18. rest params is used to collect all the arguments
+for example Math.sum(...num) // here we can pass any number of inputs to this function, it will get collected and stored in an array of num.
+19. We can destructure an array or object and singling out every value in array or every key-value pair in object , into variable name - value
+20. document.querySelector("cssSelectorName");//selects the first occurence of query
+    document.querySelectorAll("cssSelectorName");//selects all the occurences of query
+21. we have .innerHtml , .innerText
+22. document.querySelector("cssSelectorName").attribtuteName // this will return the value of attribtuteName
+   document.querySelector("cssSelectorName").getAttribute("attribtuteName")
+   document.querySelector("cssSelectorName").setAttribute("attribtuteName","new value for the attribtute")
+23. window.getComputedStyle("cssSelectorName").stylename
+window.getComputedStyle("h1").color
+24. document.querySelector("cssSelectorName").style.stylename = "value"
+25. use document.querySelector("cssSelectorName").classList.add/remove/toggle to add classes toggle remove and manymore to work with classes
+26. //iterating on multiple tags
+       document.querySelectorAll('li')[i].style.color = colors[i];
+27. let btn = document.createElement('button'); //used to create element
+    let con = document.querySelector("#container");
+    container.appendChild(btn); // used to append it inside the container 
+    conainter.append(btn)l // append it to conatainer 
+    h1.append(sometext)// it will put the text inside it.
+    particular element selected using id
+    btn.remove();//it will remove button
+
+JS EVENTS
+1. onclick = " " //inline events, write this like a attribute inside a tag.
+   btn.onclick = function (){ ... } //version 2
+   btn.addEventListener('eventName',functionName) //no parenthesis for functionName
+   btn.addEventListener('eventName',function(){ ... })
+2. //keyboard events
+   btn.addEventListener('keydown',function(e){ 
+      //e.code will give code i.e KeyA , RightShift, Space
+      //e.key will give the value of key presses i.e , A,Shift ,   , etc
+    })
+3. to stop form from going to different page after submitting , use the event.preventDefault();
+   form.addEventListener('submit',function(e){ 
+      e.preventDefault();
+      const username = form.elements.username.value; //form.elements.*name attribute*.value;
+      form.elements.username.value = ''; //to make form empty after submit;
+   })
+4. events // 'input' -- it is used to get live input from the inputbox 
+   'change' -- Whenever we type something and leave the text box the change event gives us the input in the JAVASCRIPT
+5. e.stopPropagation() // it can be used to stop event bubbling i.e the parent element's event will not trigger when childs event is triggered as we have stopped its   
+propagation.
+6. when we add new li using input we cannot delete them by just li.remove()
+   to solve this we do a event listen on its parent which is ul and then we use something called as taget
+   e.target.remove();
+   to make sure that our target is a li we use e.target.nodeName === 'LI'
+7. promise
+   fakeRequestPromise('yelp.com/api/coffee/page1')
+    .then((data) => {
+        console.log("IT WORKED!!!!!! (page1)")
+        console.log(data)
+        return fakeRequestPromise('yelp.com/api/coffee/page2')
+    })
+    .then((data) => {
+        console.log("IT WORKED!!!!!! (page2)")
+        console.log(data)
+        return fakeRequestPromise('yelp.com/api/coffee/page3')
+    })
+    .then((data) => {
+        console.log("IT WORKED!!!!!! (page3)")
+        console.log(data)
+    })
+    .catch((err) => {
+        console.log("OH NO, A REQUEST FAILED!!!")
+        console.log(err)
+    })
+8. JSON.parse(object) // received from api
+   JSON.stringify(object) // send to api
+9. async functions always return a promise. If function returns a value the promise will be resolved with that value, if the function throws an exception , the promise will be rejected.
+10. we can use await inside of function declared with async, await will pause the execution of the function, waiting for promise to be resolved
+11. To handle errors in async function use try and catch
+12. async function functionName(){
+   try{
+      let x = await fakeRequest('/page1');
+      ...
+   }
+   catch{
+      ...
+   }
+}
+13. axios <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+//axios is used to make http request from javascript frontend as well as node 
+async function getUser() {
+  try {
+    const response = await axios.get('/user?ID=12345');
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+
+
+  const getDadJoke = async () => {
+    try {
+        const config = { headers: { Accept: 'application/json' } }
+        const res = await axios.get('https://icanhazdadjoke.com/', config)
+        return res.data.joke;
+    } catch (e) {
+        return "NO JOKES AVAILABLE! SORRY :("
+    }
+
+}
+
+const addNewJoke = async () => {
+    const jokeText = await getDadJoke(); //always use await keyword when calling a async function
+    const newLI = document.createElement('LI');
+    newLI.append(jokeText);
+    jokes.append(newLI)
+}
+
+
+BACKEND
+
+TERMINAL
+Frequently used Commands ls,cd,cd..,touch,mkdir,rm,rmdir,rmdir-rf
+
+NODE
+1. to run a node file in terminal type node filename.js //make sure u are in the same directory.
+2. process.argv //it will give us the array of all the commands we run in terminal right from executing the file command till the end.
+   let x = process.argv.slice(2) //here x is array and this will ignore first two inputs in cmd i.e node filename
+3. to import a file // let variableName = require('moduleName');
+   to import a local file // let variableName = require('./moduleName'); //add the actual path if its not present in same folder
+4. when we make a file we have to specifically mention what we want to export , so we use module.exports.add = add; // shortcut is exports.add = add
+   or we can do 
+   let math = {
+      square: square,
+      add: add,
+      PI : PI
+   }
+   exports.math = math;
+5. to require a directory , let variableName = ('./directoryName');
+   if we want to require an entire directory , then all the modules in that directory will be required in a file called index.js and whenever we require that directory , we will always get what that index.js exports, this a very common way of exporting a bunch of files
+6. npm - node package manager
+   its a library for thousands of packages around the world , a command line tool too easy install and manage those packages in our node project
+7. npm i packageName //to install package
+   to require a npm package dont go to any directory, just let variableName = require('packageName');
+8. if we use the -g flag i.e npm i -g packageName , we are going to install a package globally 
+and if incase we run into a error , which is a permission issue , just fix it by googling
+now the packages which are installed globally can be used anywhere,its just we have to link that package to our project
+npm link packageName //run this in cmd in our directory where our project is there
+9. packages which are installed locally inside a folder , we can use those packages only from inside that folder.
+10. to create package.json , run a command npm init
+11. after creating package.json , install all modules, all installed modules will get automatically added to dependencies in package.json
+if we mistakenly delete nodemodules we can always install everything in go
+use the command ---> npm i || npm install
+
+EXPRESS // used to create servers
+1. const express = require('express');
+   const app = express();
+   app.listen(portnumber[e.g.8080], function(){
+      ...// app.listen is used to listen to connections on local host , we use localhost:portnumber to see the file in the browser.
+      res.send() // here we can pass an object/html/simple text express will automatically set the content-type to be html or json
+   });
+
+   app.use(function(req, res){
+      ...// whenever we have any type of request anything inside this app.use will be executed 
+   }) // it matches to every single request , routing request/get/post anything
+   here req means a request object(request made to our server by client) and res means a response object(our response to the incoming request)
+
+2. //EXPRESS ROUTES
+   app.get('/cats',function(req, res){
+      res.send();
+   });
+    app.post('/cats',function(req, res){
+      res.send();
+   });
+   app.get('*',function(req, res){
+      res.send("route not found"); //always put at the end of all the other routes , when any route not matches this route will be displayed
+   });
+
+   setting a variable path
+    app.get('/r/:variableName1/:variableName2',function(req, res){
+       //to get the variable name inside this fucntion express provides a way => req.params.variableName || const {variableName1, variableName2} = req.params
+      res.send();//anything that matches this pattern , this particular route will be executed.
+   });
+
+   query strings
+   app.get('/search',function(req, res){
+      const { q , rate} = req.query; //it will gives us the key value pair of query passed in url such { q : "audi", rate : "500"}
+      //url would look like this => /search?q=audi&rate=500
+      res.send();
+   });
+
+   use nodemon fileName.js to execute files using nodemon 
+
+3. //using ejs
+   first write app.set('view engine','ejs');
+   then install ejs // npm i ejs
+   create a folder named as views in current working directory
+   and inside views make your file using fileName.ejs
+   then inside app.get use res.render(filename) //no need to write fileName.ejs as we have preset the view engine to ejs already.
+
+4. //setting path
+   const path = require('path')
+   app.set('views',path.join(__dirname, '/views'))
+   path.join(__dirname, '/views') //this will join the path of directories with our index.js , doing this even if we run our file from any directory wont create any issue, as we have given a exact path now , earlier we had a relative path from cwd and now we have a relative path from the directory of index.js
+   
+5. <%=  ...   %> //anything between these two tags will be executed as javascript
+6. we can pass varaibles from index.js to our ejs files
+   let num = 5*4;
+   res.render('calc',{multiply : num}) ||  res.render('calc',{ num })
+7. if we want to use javascript but not want to render it and embed in our template than just put all the javascript inside this <% .... %>
+8. we have to import a .json file using require to our index.js to use it
+   const dataFile = require('./fileName');
+9. make a new directory and put other files such as css , js , images in there or make css directory, js directory, images directory
+   app.use(express.static('public'));
+   //as we know app.use will serve every single route and express.static will serve the contents from those directories.
+   //now for every ejs page if we want to serve any specific js file or css file, just add it at the top og the html(ejs) file like we do normally.
+10. to reduce lot of duplications , we create templates for everything such as header of html page , navbar and anything ehich is very much repeated in other pages. 
+    so in our views directory, we can make another directory named templates and inside it we have put all our repeating templates as other ejs files 
+    to include these files in our actual full page ejs files we use the syntax <%- include('partials/navbar') %> 
+11. File structure 
+    index.js 
+    node_modules
+    views -> full page ejs files
+             templates - > template files 
+    public -> css dir -> all css files(can have bootstrap css file)
+              js dir -> all js files
+              img dir -> all images
+12. GET
+      - used to retrieve information, data is sent via query string, info is visible in URL, limited data can be sent 
+    POST 
+      - used to post data to the server, used for CRUD operations, data is sent via request body, not a query string, can send any sort of data       
+13. parsing the request body when data sent thru post request 
+    req.body //it will return us a object, key value pairs of the data sent thru form
+    but to parse form data we have to add 
+    app.use(express.urlencoded({extended : true})) //to parse form data
+    app.use(express.json()) //to parse json files
+    see express documentation for other types of data parsing
+14. app.patch('/',(req, res) => {
+
+}) //used to update part of the resource 
+ html forms knows only about get and post request, the other request such as patch, delete if we want to use them then we have to do couple of things
+ const methodOverride = require('method-override');
+ app.use(methodOverride('_method'));
+ then inside <form action="/comments/edit?_method=PATCH" method="POST"> //it overrides the query string
+
+ to delete use app.delete('/',(req, res) => {
+    ...
+ })
+
+ 
+
+DATABASES (MONGO)
+1. in the windows powershell first start mongod by typing mongod
+2. then open another power shell to run mongo // type mongo
+3. to show dbs use command //show dbs 
+4. to make a database //use databaseName
+5. we add al the data to collections
+   to see all collections //show collections
+6. to insert
+   db.collectionName.insert({key:value,key:value,key:value});
+   db.collectionName.insert([{key:value,key:value}, {key:value,key:value}]);//multiple objects are passed , array is passed here
+   to see whats inside collections //db.collectionName.find()
+7. db.collectionName.find({key:value}) //this will return us all results matching the value pair passed in it.
+db.collectionName.findOne({key:value}) ////this will return us only one result matching the value pair passed in it
+8. db.collectionName.findOne({ key : { $lt : 30}) //check documentation
+
+MONGOOSE
+
+goto mongoose website under api go to models to view documentation
+1. Boilerplate
+   const mongoose = require('mongoose');
+   mongoose.connect('mongodb://localhost:27017/movieApp', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("CONNECTION OPEN!!!")
+    })
+    .catch(err => {
+        console.log("OH NO ERROR!!!!")
+        console.log(err)
+    })
+
+   // creating schema(a structure // dhacha)
+    const movieSchema = new mongoose.Schema({
+      title: String, 
+      year: Number,
+      review: Number,
+      rating: String
+   });
+
+   //creating a model
+   const film = mongoose.model('Movie', movieSchema);
+   //to make a collection in mongo , mongoose will convert the model name into small letters and make it plural , it will make model Movie as movies 
+   so to view it in mongo shell use db.movies.find() 
+
+   //inserting into our model
+   const firstmovie = new film({title: 'Amadeus', year: 1986, review: 8.4, rating: 'R'});
+
+   //actually saving it to mongo
+
+   //to save it type firstmovie.save()
+
+   or we can use => 
+   film.insertMany([
+         {title: 'Amadeus', year: 1986, review: 8.4, rating: 'R'},
+         {title: 'Titanic', year: 1987, review: 9.4, rating: 'XS'},   
+         {title: 'King', year: 1988, review: 8.52, rating: 'A'}
+   ]) //this will automatically save it to mongo
+  
+   Querying
+   Movie.find({key:value}).then(data => console.log(data));
+   we also have findById
+   film.find({})
+   .then(data => {
+      console.log(data);
+   })
+   to print data we have to use then( )
+
+   Schema Validation
+   const movieSchema = new mongoose.Schema({
+      title: {
+         type : String,
+         required : true
+      } 
+      year: {
+         type : Number,
+         required : true
+      },
+      categories : [String]
+   });
+   we have a lot of Schema types ,  check documentation for more details
+   if we want a data to be an array we can type
+   categories : [String] // it will make an array of strings
+   findOneAndUpdate //it have options field in 3rd argument which has lot of options check documentation
+   e.g. runValidators : true;
+
+   check for schematypes in documentation
+
+RESTFUL ROUTES
+
+HTTP Verb	      Route	                        Action	          Used For
+GET	         '/articles'	               index action	   index page to display all articles
+GET	         '/articles/new'	         new action	      displays create article form
+POST	         '/articles'	               create action	   creates one article
+GET	         '/articles/:id'	         show action	      displays one article based on ID in the url
+GET	         '/articles/:id/edit'	      edit action	      displays edit form based on ID in the url
+PATCH	         '/articles/:id'	         update action	   modifies an existing article based on ID in the url
+PUT	         '/articles/:id'	         update action	   replaces an existing article based on ID in the url
+DELETE	      '/articles/:id'	         delete action	   deletes one article based on ID in the url
+
+MIDDLEWARE ROUTES
+1. we can use app.use on a specific route 
+   app.use('/dogs',(req, res, next)=>{
+      ...
+   })
+2. at the end of all routes to handle status 404 we can do
+   app.use((req, res)=>{
+      res.status(404).send('NOT FOUND');
+   })
+3. we use a package named morgan to get response time status code and request method(get,put)
+4. we can also do it on our own to get response time and other details
+5. we can call multiple function callbacks into our routing functions
+   e.g app.get('/', function1 , function2 , (req, res)=>{
+      ...
+   })
+   if function1 stops the code i.e by giving a res.send or res.render then function2 and all the other chained functions will not be called.
+
+ERROR HANDLING:
+1. there is an in-built errorhandler in express with status code 500 
+2. we can create custom message for error by passing 
+   throw new Error('');(this is for the in-built errorhandler)
+3. for creating custom error handler middleware
+   create a new filed named AppError.js and require it in index.js
+   this is the part of AppError
+   class AppError extends Error {
+      constructor(message, status) {
+         super();
+         this.message = message;
+         this.status = status;
+      }
+   }
+   this is the part of index.js
+   app.use((err, req, res, next)=>{
+     const { status = status code, message = 'Error message'} = err;
+     res.status(status).send(message) 
+   })
+   to use this in particular request for eg.
+   app.get('/dogs',(req, res) => {
+      ....
+      throw new AppError('error message',status code)
+   })
+4. for async functions,instead of throw we use next()
+   app.get('/dogs',async (req, res, next) => {
+      ....
+      next(new AppError('error message',status code))
+   })
+5. we can also use try and catch for async functions in try there must be all of our code and in catch next mus tbe passed
+6. for normal functions errorhandling is not necessary but for async functions it is must
+7. Async utility:
+   this is a generalised way for try and catch
+   function wrapAsync(fn)  {
+      fn(req, res, next).catch(e=>  next(e))
+   }
+   app.get('/dogs', wrapAsync(async (req, res, next)) => {
+      ...
+   }
+8. mongoose error handling :
+   in mongoose error name is ValidationError by default so if the error name is ValidationError we get to understand that it is a mongoose error
+   const handleValidationErr = err =>  {
+      console.dir(err);
+      return new AppError('error message',status code)
+   }
+   app.use((err, req, res, next)) => {
+      console.log(err.name);
+      if(err.name === 'ValidationError')  err = handleValidationErr(err) 
+      next(err);
+   })
+
+DATA RELATIONSHIPS WITH MONGO:
+1. id is set by default for every schema in mongoose
+   so to remove it,
+   _id:  {id:  false}
+2. one to many relationships :
+   populate is used when we have multiple objects in an array
+   for eg. we have multiple products under the array product 
+   we have to give the produts array the type of products : [{type : mongoose.Schema.Types.ObjectId},ref:'Product']
+   const Product = mongoose.model('Product', productSchema)
+   so, to show every object inside it seperately with its details we use .populate()
+   if we want to use only one object from the detail from the object then, for eg. 
+   .populate(product,name) if the want only the name of the product from the products array
+
+EXPRESS-SESSIONS:
+1. npm i express-session
+   const session = require('express-session');
+   const sessionOptions = { secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false }
+   app.use(session(sessionOptions));

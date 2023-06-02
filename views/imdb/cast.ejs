@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<title>Cast</title>
+
+ <link rel="stylesheet" href="/css/entire.css">
+ <link rel="stylesheet" href="/css/cast.css" >
+
+<%- include('../partials/navbar') %>
+<h3 class="mt-3 mb-5 text-center">Full cast of <%= result.title %></h3>
+<div class="container">
+    <div class="row d-flex">
+<% for(a of result.actorList) {%> 
+    <div class="col-6 col-md-6 col-lg-3 mb-4 ml-4 container2">
+        <img src="<%= a.image %>" alt="" class="img-thumbnail castImage">
+        <p class="text-center"><%= a.name %></p>
+    </div>
+ <% } %>
+      
+  </div>  
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<%- include('../partials/footer') %>
